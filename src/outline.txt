@@ -1,0 +1,36 @@
+  App
+    User (state = userInfo)//remove
+        NavBar (props = isLoggedIn)
+        Routes aka Jobly (props = isLoggedIn, setUserInfo())
+            Home
+            ProfileForm (props = userInfo, setUserInfo()
+                         state = profileFormData)
+            SignupForm (props = setUserInfo(),
+                        state = signupFormData)
+            LoginForm  (props = setUserInfo()
+                        state = signupFormData)
+
+            CompanyList (state = allOrFilteredCompanies
+                                 companySearchString,
+                                 companyErrorString)
+                SearchForm (props = setCompanySearchString(),
+                            state = searchFormData)
+                CompanyCard (props = companyData,
+                                     setCompanyToDisplay()/setHasCompanyToDisplay())
+
+            JobList (state = allOrFilteredJobs
+                             jobSearchString,
+                             jobErrorString)
+                SearchForm (props = setJobSearchString(),
+                            state = searchFormData)
+                JobCard (props = jobData,
+                                 applyForJob())
+                                
+            Company (prop = companyDetails,
+                            companyJobs,
+                            allCompanyJobs
+                    state = companyToDisplay/hasCompanyToDisplay?)
+                JobList (prop = allCompanyJobs,
+                                applyForJob())
+                    JobCard (props = jobData,
+                                     applyForJob())
