@@ -1,55 +1,46 @@
-import React, {useState, useEffect} from 'react'
-
-import JoblyApi from './api';
+import React from 'react'
 import SearchForm from './SearchForm';
 import CompanyCard from './CompanyCard'
+import './CompanyList.css'
+import JobCardList from './JobCardList';
+
 
 /** Displays a list of companies.
  *
- * Design: www.tinyurl.com/y3ree3wj
+ * Props
+ * - companyList
+ * - setSearchQuery()
+ * 
+ * Design
+ * - www.tinyurl.com/y3ree3wj
  */
 
- function CompanyList(){
+function CompanyList({ companyList, setSearchQuery }) {
   console.log("<CompanyList />")
-  const [companyList, setCompanyList] = useState([])
-  console.log("companyList", companyList);
+  // const [companyList, setCompanyList] = useState([])
+  // console.log("companyList", companyList);
 
-  useEffect(
-    function handleApiRequests(){
-      async function fetchData() {
-        console.log("fetchData() for <CompanyList />")
-        try {
-          const companies = await JoblyApi.getAllCompanies();
-          // setCompanyList((oldCompanyList) => [...oldCompanyList, companies]);
-          setCompanyList(companies);
-        } catch (err) {
-          alert(err);
-        }
-      }
-      fetchData()
-    },[]
-   )
+
   // TODO: add state holding searchterm to useEffect dependencies
   // TODO: add <SearchForm />
-
-   const cardsInfo = companyList.map(c => {
-      return {
-        handle: c.handle,
-        name: c.name,
-        description: c.description,
-        logoUrl: c.logoUrl
-      }
-   }) 
-   console.log("companyList mapped for simple info", cardsInfo);
+  const cardsInfo = companyList.map(c => {
+    return {
+      handle: c.handle,
+      name: c.name,
+      description: c.description,
+      logoUrl: c.logoUrl
+    }
+  })
+  console.log("companyList mapped for simple info", cardsInfo);
 
   return (
-    <div>
+    <div className="CompanyList">
       <SearchForm />
-      {cardsInfo.map(c=> {
-        return <CompanyCard data={c}/>
-        })}
+      {cardsInfo.map(c => {
+        return <CompanyCard companyData={c} key={c.handle} />
+      })}
     </div>
   )
- }
+}
 
- export default CompanyList
+export default CompanyList

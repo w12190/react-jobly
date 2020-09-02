@@ -2,30 +2,27 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import './CompanyCard.css'
 
-
 /** Display simple info about a company
  * 
  * props:
  * - companyData: {name, description, logoUrl}
  *
- * Design: www.tinyurl.com/y3ree3wj
+ * Design
+ * - www.tinyurl.com/y3ree3wj
  */
 
 function CompanyCard(props) {
-  const { name, handle, logoURL, description } = props.data;
+  const { name, handle, logoUrl, description } = props.companyData;
 
-  // TODO: implement logos
-  // const hasLogo = logoURL ? <img src={logoURL} alt={name} /> : null;
 
   return (
     <div className="CompanyCard">
-      <Link to={handle}>
+      <Link to={`/companies/${handle}`}>
         <h2>{name}</h2>
-        {/* {hasLogo} */}
-        <img src={logoURL} alt={name} />
+        {logoUrl ? <img src={logoUrl} alt={name} /> : null}
         <p>{description}</p>
+        <br />
       </Link>
-
     </div>
   )
 }

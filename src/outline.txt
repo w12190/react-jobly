@@ -1,3 +1,30 @@
+  /*Todo List
+x lift state from companyList to Routes
+x setup state for JobList
+x modify jobcard to Work
+x implement jobcardlist
+
+SUBROUTINE
+1. CompanyList: a company is clicked, a state from Routes is set
+  - clicked=CompanyCard?, so drill setter there?
+2. CompanyDetails is loaded, state from Routes is passed along with 
+  - sub-question what does CompanyDetails need to do its job? it needs
+    - 1) company name
+    - 2) company description
+    - 3) all company jobs
+3. Display JoCardList, passing it all the jobs
+x. Afterwards, handle case where they just enter ./companies/handle (and it isn't set yet)
+
+- implement JobList
+- implement CompanyDetails
+- implement search box and add to JobList & CompanyList
+- Extra projects
+  - combining useEffects() for different calls*/
+  - combine companyList and companyToGetJobsFor states if no need after all routes implemented
+- Minor Q's: is it bad practice to pass around extra key/value pairs in data POJO's (change depending on answer)
+
+
+
   App
     User (state = userInfo)//remove
         NavBar (props = isLoggedIn)

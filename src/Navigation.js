@@ -4,13 +4,14 @@ import './Navigation.css'
 
 /** Displays a navigation bar.
  *
- * Design: www.tinyurl.com/y3ree3wj
+ * Design
+ * - www.tinyurl.com/y3ree3wj
  */
 
 function Navigation() {
 
   return (
-      <nav>
+      <nav className="Navigation">
         <NavLink exact to="/"> Jobly </NavLink>
         <NavLink exact to="/companies"> Companies </NavLink>
         <NavLink exact to="/jobs"> Jobs </NavLink>
