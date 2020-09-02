@@ -5,8 +5,10 @@ import React from 'react'
  * Design: www.tinyurl.com/y3ree3wj
  */
 
- function CompanyDetails(){
+ function CompanyDetails(props){
+  const {name, handle, description} = props;
 
+  // const jobs
   return (
     <div>
       
