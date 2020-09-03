@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Routes from './routes-nav/Routes'
 import Navigation from './routes-nav/Navigation'
 import { BrowserRouter } from 'react-router-dom'
@@ -14,7 +14,11 @@ function App() {
   const [token, setToken] = useState(JoblyApi.token);
   const [currentUser, setCurrentUser] = useState([])
   // console.log("token: ", token)
-  // token?
+
+  useEffect( function setCurrentUserOnLogin() {
+    // get information on the newly-logged-in user and store it in the currentUser state
+  }, [token]
+  )
 
   async function handleLogin (data) {
     await JoblyApi.loginUser(data);
@@ -34,7 +38,7 @@ function App() {
 
   return (
     <div className="App">
-      <UserContext.Provider value={token}>
+      <UserContext.Provider value={currentUser}>
         <BrowserRouter>
           <Navigation handleLogout={handleLogout}/>
           <Routes handleLogin={handleLogin} handleSignup={handleSignup}/>
