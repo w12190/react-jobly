@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from "react";
 import './JobCard.css'
 import '../bootstrap.css';
+import UserContext from '../userContext'
+
 
 /** Display simple info about a job
  * 
@@ -12,8 +14,11 @@ import '../bootstrap.css';
  */
 
 function JobCard({jobData}) {
+  const token = useContext(UserContext);
+  console.log("Token called by <JobCard />", token)
+
   const { title, companyName, salary, equity } = jobData;
-  // const {  title, salary, equity } = props.jobData;
+
   return (
     <div className="JobCard card">
       <div>
