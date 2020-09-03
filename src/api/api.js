@@ -46,7 +46,7 @@ class JoblyApi {
 
   static async getFilteredCompanies(query) {
       let res = await this.request(`companies?name=${query}`);
-    console.log("query", query, "company", res.companies)
+    // console.log("query", query, "company", res.companies)
       return res.companies;
   }
 
@@ -71,20 +71,27 @@ class JoblyApi {
   /** Login an existing user */
   static async loginUser(userInfo) {
     let res = await this.request('auth/token', userInfo, 'post')
-    // return res.token;
-    this.token = res.token;
+    return res.token;
+    // this.token = res.token;
   }
 
   /** Register a new user */
   static async registerUser(userInfo) {
     let res = await this.request('auth/register', userInfo, 'post')
-    // return res.token;
-    this.token = res.token;
-  }
+    return res.token;
+    // this.token = res.token;
+  }//TODO: not couple the token with the class directly, just return the token
+  //TODO: less responsibility here in api.js (only API calls), more in App.js
 
-  /** Logout user */
-  static logoutUser() {
-    this.token = undefined;
+  // /** Logout user */
+  // static logoutUser() {
+  //   this.token = undefined;
+  // }//TODO: logging out is not being done here, should not be concerned it; it should be done in React
+
+  /** Get user data */
+  static async getUserData(username){
+    let res = await this.request(`users/${username}`)
+    return res.user
   }
 }
 

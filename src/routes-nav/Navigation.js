@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink } from 'react-router-dom'
 import './Navigation.css'
-import UserContext from '../userContext'
-import JoblyApi from "../api/api";
+import UserContext from '../common/UserContext'
 
 /** Displays a navigation bar.
  * 
@@ -14,22 +13,28 @@ import JoblyApi from "../api/api";
  */
 
 function Navigation({ handleLogout }) {
-  const token = useContext(UserContext);
-  console.log("Confirm JoblyApi token", JoblyApi.token)
-  console.log("Token called by <Navigation />", token)
- //TODO implement logout 
- //TODO: implement users
+  // console.log('<Navigation>')
+  const { currentUser, isLoggedIn } = useContext(UserContext);
   return (
     <nav className="Navigation navbar navbar-expand-lg bg-primary">
-        <NavLink exact to="/"> Jobly </NavLink>
-        <NavLink exact to="/companies"> Companies </NavLink>
-        <NavLink exact to="/jobs"> Jobs </NavLink>
-        <NavLink exact to="/Profile"> Profile </NavLink>
+      <NavLink exact to="/"> Jobly </NavLink>
 
-        <NavLink exact to="/login"> Login </NavLink>
-        <NavLink exact to="/signup"> Signup </NavLink>
-        <NavLink exact to="/" onClick={handleLogout}> Logout FIXME</NavLink>
-      </nav>
+      {isLoggedIn && (
+        <>
+          <NavLink exact to="/companies"> Companies </NavLink>
+          <NavLink exact to="/jobs"> Jobs </NavLink>
+          <NavLink exact to="/Profile"> Profile </NavLink>
+          <NavLink exact to="/" onClick={handleLogout}> Logout {currentUser.firstName}</NavLink>
+        </>
+      )}
+
+      {!isLoggedIn && (
+        <>
+          <NavLink exact to="/login"> Login </NavLink>
+          <NavLink exact to="/signup"> Signup </NavLink>
+        </>
+      )}
+    </nav>
   )
 }
 

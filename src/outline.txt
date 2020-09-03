@@ -26,54 +26,23 @@ x implement search box and add to JobList & CompanyList
 Hint on Proceeding — Read After Thinking!
 
 Here’s the strategy we took from our solution:
-
-
 x Make login, signup, and logout functions in the App component.
-
-- By passing login, logout, and signup functions down to the login and signup forms and the navigation bar, they’ll be able to call centralized functions to perform these processes
-
+x By passing login, logout, and signup functions down to the login and signup forms and the navigation bar, they’ll be able to call centralized functions to perform these processes
 x Add token as a piece of state in App, along with state for the currentUser.
 
-- Create an effect triggered by a state change of the token: this should call the backend to get information on the newly-logged-in user and store it in the currentUser state.
 
+
+
+
+- Create an effect triggered by a state change of the token: this should call the backend to get information
+on the newly-logged-in user and store it in the currentUser state.
 x Expose the current user throughout the app with a context provider. This will make it easy to refer to the current app in navigation, on pages, and so on.
-
 x This would be an excellent place to use useContext, so you can store the current user’s info high up in your hierarchy, like on the App component.
 
 
-  App
-    User (state = userInfo)//remove
-        NavBar (props = isLoggedIn)
-        Routes aka Jobly (props = isLoggedIn, setUserInfo())
-            Home
-            ProfileForm (props = userInfo, setUserInfo()
-                         state = profileFormData)
-            SignupForm (props = setUserInfo(),
-                        state = signupFormData)
-            LoginForm  (props = setUserInfo()
-                        state = signupFormData)
-
-            CompanyList (state = allOrFilteredCompanies
-                                 companySearchString,
-                                 companyErrorString)
-                SearchForm (props = setCompanySearchString(),
-                            state = searchFormData)
-                CompanyCard (props = companyData,
-                                     setCompanyToDisplay()/setHasCompanyToDisplay())
-
-            JobList (state = allOrFilteredJobs
-                             jobSearchString,
-                             jobErrorString)
-                SearchForm (props = setJobSearchString(),
-                            state = searchFormData)
-                JobCard (props = jobData,
-                                 applyForJob())
-                                
-            Company (prop = companyDetails,
-                            companyJobs,
-                            allCompanyJobs
-                    state = companyToDisplay/hasCompanyToDisplay?)
-                JobList (prop = allCompanyJobs,
-                                applyForJob())
-                    JobCard (props = jobData,
-                                     applyForJob())
++ set a state in context in App.js with the user data
+  + write getUserData() in api.js
+  + need to keep this updated via useEffect() in App.js
+  + update Homepage.js to display name
+  + Navbar logic if logged in
++ create effect that updates user data 

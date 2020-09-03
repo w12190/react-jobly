@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import JoblyApi from '../api/api'
+import { useHistory } from 'react-router-dom'
+
 
 /** Displays a sign-up form.
  * 
@@ -15,6 +17,8 @@ import JoblyApi from '../api/api'
 
 function SignupForm({ handleSignup }){
 
+   const history = useHistory()
+
    const INITIAL_FORM_DATA = {
      username: "",
      password: "",
@@ -24,6 +28,8 @@ function SignupForm({ handleSignup }){
    }
    // TODO: add data validation and alerts
 
+
+   //TODO: add history.push() and redirect
    const [signupForm, setSignupForm] = useState(INITIAL_FORM_DATA);
 
    function handleChange(evt) {
@@ -40,10 +46,15 @@ function SignupForm({ handleSignup }){
      // use signupFN passed from APP
     //  const token = await JoblyApi.registerUser(signupForm);
     //  JoblyApi.token = token;
-     console.log("JoblyApi.token", JoblyApi.token)
+     console.log("JoblyApi.token", JoblyApi.token)//TODO: let the app do it, not api.js
      setSignupForm(INITIAL_FORM_DATA);
-   }
 
+
+    //Add to history
+    history.push("/")
+
+   }
+//TODO: div > br
    return (
      <div className="SignupForm">
        <form onSubmit={handleSubmit}>

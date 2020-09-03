@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'//TODO: clean up
 import { Switch, Route } from 'react-router-dom'
 import Homepage from '../homepage/Homepage'
 import CompanyList from '../companies/CompanyList'
@@ -24,8 +24,10 @@ import ProfileForm from '../profiles/ProfileForm'
  */
 function Routes({handleLogin, handleSignup}) {
 
+  //TODO: move CSS ( col-10 mx-auto text-center)
   return (
-    <div className="Routes">
+    <div className="Routes" >
+
       <Switch>
         <Route exact path="/">
           <Homepage />

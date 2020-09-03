@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import UserContext from '../common/UserContext'
+import { NavLink } from 'react-router-dom'
 
 /** Displays the homepage.
  * 
@@ -7,16 +9,26 @@ import React from 'react'
  */
 
 function Homepage() {
+  const { isLoggedIn, currentUser } = useContext(UserContext);
 
-  //EDIT: pass the name to <Homepage /> after user context is established
+  //TODO: move css style={{marginTop: "250px"}}
   return (
     <div className="Homepage">
       <h1>Jobly</h1>
       <p>All the jobs in one convenient place</p>
-      <h2>Welcome back, FIXME!</h2> 
+
+      {isLoggedIn && (
+        <h2>Welcome back, {currentUser.firstName}!</h2>
+      )}
+
+      {!isLoggedIn && (
+        <>
+          <NavLink to="/login" className="btn btn-primary">Log in</NavLink> &nbsp;
+          <NavLink to="/signup" className="btn btn-primary">Sign up</NavLink>
+        </>
+      )}
     </div>
   )
 }
-// FIXME: conventional keyword to mark things to change
 
 export default Homepage
