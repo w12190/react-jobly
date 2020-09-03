@@ -17,26 +17,32 @@ import JWT from 'jsonwebtoken'
  */
 function App() {
   // this state will be global; used in userContext
-  const [token, setToken] = useState(JoblyApi.token);
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [currentUser, setCurrentUser] = useState([])//TODO: pojo; and null is clearer for no user
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   /** Get information on the newly-logged-in user and store it in the currentUser state */
   useEffect(function setCurrentUserOnLogin() {
-      async function setUser() {//TODO: try catch for 'wrong' JWT's
-        //Decode JWT to get username in token
-        const username = JWT.decode(token).username
-        
-        //Get user data via API call and username
-        const userData = await JoblyApi.getUserData(username)
+    async function setUser() {
+      try {
+        if (token) {
+          //Decode JWT to get username in token
+          const username = JWT.decode(token).username
 
-        //Set current user state
-        setCurrentUser(userData)
-        setIsLoggedIn(true)
+          //Get user data via API call and username
+          const userData = await JoblyApi.getUserData(username)
+
+          //Set current user state
+          setCurrentUser(userData)
+          setIsLoggedIn(true)
+        }
+        if (token !== undefined) setUser()
+      } catch (err) {
+        // do something with errors
       }
-      if (token !== undefined) setUser()
-    }, [token]
+    }
+  }, [token]
   )
 
   /** Handles user login */
@@ -44,20 +50,25 @@ function App() {
     // API call
     const token = await JoblyApi.loginUser(data);
 
-        // // Set token
-        // setToken(JoblyApi.token);
+    // // Set token
+    // setToken(JoblyApi.token);
     // Set LocalStorage
     localStorage.setItem("token", token)
+    setToken(localStorage.getItem("token"))
+    setIsLoggedIn(true)
   }
 
   /** Handles user signup */
   async function handleSignup(data) {
     // API call
-    await JoblyApi.registerUser(data);
+    const token = await JoblyApi.registerUser(data);
 
-      // // Set token
-      // setToken(JoblyApi.token);
+    // // Set token
+    // setToken(JoblyApi.token);
     localStorage.setItem("token", token)
+    // TODO: make this a hook
+    setToken(localStorage.getItem("token"))
+    setIsLoggedIn(true)
   }
 
   /** Handles user logout */
@@ -70,10 +81,10 @@ function App() {
     // setToken(JoblyApi.token);
     localStorage.removeItem("token")
   }
-//TODO: don't have to use derived state isLoggedIn, just use null for currUser
+  //TODO: don't have to use derived state isLoggedIn, just use null for currUser
   return (
     <div className="App">
-      <UserContext.Provider value={{currentUser, isLoggedIn}}>
+      <UserContext.Provider value={{ currentUser, isLoggedIn }}>
         <BrowserRouter>
           <Navigation handleLogout={handleLogout} />
           <Routes handleLogin={handleLogin} handleSignup={handleSignup} />

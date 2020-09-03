@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import JoblyApi from '../api/api'
+
 
 /** Displays a login form.
  * 

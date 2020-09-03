@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'//TODO: clean up
+import React, { useContext } from 'react'//TODO: clean up
 import { Switch, Route } from 'react-router-dom'
 import Homepage from '../homepage/Homepage'
 import CompanyList from '../companies/CompanyList'
@@ -7,6 +7,8 @@ import CompanyDetails from '../companies/CompanyDetails'
 import SignupForm from '../auth/SignupForm'
 import LoginForm from '../auth/LoginForm'
 import ProfileForm from '../profiles/ProfileForm'
+import UserContext from '../common/UserContext'
+
 
 /** Maps URL's to components.
  * 
@@ -24,6 +26,9 @@ import ProfileForm from '../profiles/ProfileForm'
  */
 function Routes({handleLogin, handleSignup}) {
 
+  const { isLoggedIn } = useContext(UserContext);
+
+
   //TODO: move CSS ( col-10 mx-auto text-center)
   return (
     <div className="Routes" >
@@ -33,6 +38,8 @@ function Routes({handleLogin, handleSignup}) {
           <Homepage />
         </Route>
 
+        {isLoggedIn && (
+          <>
         <Route exact path="/companies/:name">
           <CompanyDetails />
         </Route>
@@ -45,6 +52,16 @@ function Routes({handleLogin, handleSignup}) {
           <JobList />
         </Route>
 
+        <Route exact path="/profile">
+          <ProfileForm />
+        </Route>
+        
+          </>
+        )}
+
+        {!isLoggedIn && (
+          <>
+
         <Route exact path="/login">
           <LoginForm handleLogin={handleLogin}/>
         </Route>
@@ -52,10 +69,9 @@ function Routes({handleLogin, handleSignup}) {
         <Route exact path="/signup">
           <SignupForm handleSignup={handleSignup}/>
         </Route>
+          </>
+        )}
 
-        <Route exact path="/profile">
-          <ProfileForm />
-        </Route>
       </Switch>
     </div>
   )

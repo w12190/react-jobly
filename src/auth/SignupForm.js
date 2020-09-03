@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import JoblyApi from '../api/api'
 import { useHistory } from 'react-router-dom'
 
 
@@ -46,7 +45,7 @@ function SignupForm({ handleSignup }){
      // use signupFN passed from APP
     //  const token = await JoblyApi.registerUser(signupForm);
     //  JoblyApi.token = token;
-     console.log("JoblyApi.token", JoblyApi.token)//TODO: let the app do it, not api.js
+    //  console.log("JoblyApi.token", JoblyApi.token)//TODO: let the app do it, not api.js
      setSignupForm(INITIAL_FORM_DATA);
 
 
