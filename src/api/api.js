@@ -66,11 +66,23 @@ class JoblyApi {
     let res = await this.request(`jobs?title=${title}`);
     return res.jobs;
   }
+
+  /** Login an existing user */
+  static async loginUser(userInfo) {
+    let res = await this.request('auth/token', userInfo, 'post')
+    return res.token;
+  }
+
+  /** Register a new user */
+  static async registerUser(userInfo) {
+    let res = await this.request('auth/register', userInfo, 'post')
+    return res.token;
+  }
 }
 
 // for now, put token ("testuser" / "password" on class)
-JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-  "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-  "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+// JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+//   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+//   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
 export default JoblyApi
