@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from "react";
 import { NavLink } from 'react-router-dom'
 import './Navigation.css'
+import UserContext from '../userContext'
+import JoblyApi from "../api/api";
 
 /** Displays a navigation bar.
  *
@@ -8,7 +10,11 @@ import './Navigation.css'
  * - www.tinyurl.com/y3ree3wj
  */
 
-function Navigation() {
+function Navigation({ handleLogout }) {
+  const token = useContext(UserContext);
+  console.log("Confirm JoblyApi token", JoblyApi.token)
+  console.log("Token called by <Navigation />", token)
+ //TODO implement logout 
  //TODO: implement users
   return (
       <nav className="Navigation">
@@ -19,9 +25,9 @@ function Navigation() {
 
         <NavLink exact to="/login"> Login </NavLink>
         <NavLink exact to="/signup"> Signup </NavLink>
-        <NavLink exact to="/"> Logout </NavLink>
+        <NavLink exact to="/" onClick={handleLogout}> Logout </NavLink>
       </nav>
-  )//TODO implement logout
+  )
 }
 
 export default Navigation

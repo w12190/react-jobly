@@ -18,7 +18,7 @@ import ProfileForm from '../profiles/ProfileForm'
  * Design
  * - www.tinyurl.com/y3ree3wj
  */
-function Routes() {
+function Routes({handleLogin, handleSignup}) {
 
   return (
     <div className="Routes">
@@ -40,11 +40,11 @@ function Routes() {
         </Route>
 
         <Route exact path="/login">
-          <LoginForm />
+          <LoginForm handleLogin={handleLogin}/>
         </Route>
 
         <Route exact path="/signup">
-          <SignupForm />
+          <SignupForm handleSignup={handleSignup}/>
         </Route>
 
         <Route exact path="/profile">

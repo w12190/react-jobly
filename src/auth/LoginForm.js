@@ -7,7 +7,7 @@ import JoblyApi from '../api/api'
  * - www.tinyurl.com/y3ree3wj
  */
 
-function LoginForm() {
+function LoginForm({ handleLogin }) {
   const INITIAL_FORM_DATA = {
     username: "",
     password: ""
@@ -26,8 +26,7 @@ function LoginForm() {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    const token = await JoblyApi.loginUser(loginForm);
-    JoblyApi.token = token;
+    handleLogin(loginForm);
     console.log("JoblyApi.token", JoblyApi.token)
     setLoginForm(INITIAL_FORM_DATA);
   }

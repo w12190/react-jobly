@@ -7,7 +7,7 @@ import JoblyApi from '../api/api'
  * - www.tinyurl.com/y3ree3wj
  */
 
- function SignupForm(){
+function SignupForm({ handleSignup }){
 
    const INITIAL_FORM_DATA = {
      username: "",
@@ -30,8 +30,10 @@ import JoblyApi from '../api/api'
 
    async function handleSubmit(evt) {
      evt.preventDefault();
-     const token = await JoblyApi.registerUser(signupForm);
-     JoblyApi.token = token;
+     handleSignup(signupForm)
+     // use signupFN passed from APP
+    //  const token = await JoblyApi.registerUser(signupForm);
+    //  JoblyApi.token = token;
      console.log("JoblyApi.token", JoblyApi.token)
      setSignupForm(INITIAL_FORM_DATA);
    }

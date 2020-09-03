@@ -12,6 +12,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
 class JoblyApi {
   // the token for interactive with the API will be stored here.
+  // token contains {username, isAdmin}
   static token;
 
   static async request(endpoint, data = {}, method = "get") {
@@ -70,13 +71,20 @@ class JoblyApi {
   /** Login an existing user */
   static async loginUser(userInfo) {
     let res = await this.request('auth/token', userInfo, 'post')
-    return res.token;
+    // return res.token;
+    this.token = res.token;
   }
 
   /** Register a new user */
   static async registerUser(userInfo) {
     let res = await this.request('auth/register', userInfo, 'post')
-    return res.token;
+    // return res.token;
+    this.token = res.token;
+  }
+
+  /** Logout user */
+  static logoutUser() {
+    this.token = undefined;
   }
 }
 
