@@ -10,6 +10,10 @@ import ProfileForm from '../profiles/ProfileForm'
 
 /** Maps URL's to components.
  * 
+ * Props
+ * - handleLogin: function passed from App to handle user login
+ * - handleSignup: function passed from App to handle user signup
+ * 
  * State
  * - companyList: array of POJO's containing data on all companies in DB
  * - jobList: array of POJO's containing data on all jobs in DB

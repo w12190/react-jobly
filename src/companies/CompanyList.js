@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import SearchForm from '../common/SearchForm';
 import CompanyCard from './CompanyCard'
 import './CompanyList.css'
-import JobCardList from '../common/JobCardList';
 import JoblyApi from '../api/api.js'
 
 

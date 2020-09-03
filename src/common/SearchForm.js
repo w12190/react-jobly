@@ -1,14 +1,13 @@
 import React, {useState} from 'react'
-import '../bootstrap.css'
 
 /** Displays a simple search box.
+ * 
  * State
  * -searchQuery: input entered into searchbox
  * 
  * Props
  * - setSearchQuery(): sets searchQuery the parent component (JobList, CompanyList)
  *
- * 
  * Design
  * - www.tinyurl.com/y3ree3wj
  */
@@ -30,7 +29,7 @@ function SearchForm({ setSearchQuery }) {
       <form onSubmit={handleSubmit}>
         <label htmlFor="searchbox"  />
         <input type="text" id="searchbox" name="searchbox" onChange={handleChange}/>
-        <button className="btn-primary">Submit</button>
+        <button className="btn btn-primary btn-sm">Submit</button>
       </form>
     </div>
   )

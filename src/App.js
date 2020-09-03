@@ -6,6 +6,10 @@ import UserContext from './userContext'
 import JoblyApi from './api/api'
 /** App
  * 
+ * States
+ * - token: set after user login
+ * - currentUser: set after token updates
+ * 
  * Design
  * - www.tinyurl.com/y3ree3wj
  */

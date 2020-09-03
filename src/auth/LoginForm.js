@@ -2,6 +2,12 @@ import React, { useState } from 'react'
 import JoblyApi from '../api/api'
 
 /** Displays a login form.
+ * 
+ * Props
+ * - handleLogin: function passed from App
+ * 
+ * State
+ * - loginForm: holds data from login form
  *
  * Design
  * - www.tinyurl.com/y3ree3wj

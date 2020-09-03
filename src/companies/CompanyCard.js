@@ -4,8 +4,8 @@ import './CompanyCard.css'
 
 /** Display simple info about a company
  * 
- * props:
- * - companyData: {name, description, logoUrl}
+ * Props:
+ * - companyData: {name, handle, description, logoUrl}
  *
  * Design
  * - www.tinyurl.com/y3ree3wj

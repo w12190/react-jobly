@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import './JobCard.css'
-import '../bootstrap.css';
 import UserContext from '../userContext'
 
 
@@ -14,20 +13,20 @@ import UserContext from '../userContext'
  */
 
 function JobCard({jobData}) {
-  const token = useContext(UserContext);
-  console.log("Token called by <JobCard />", token)
+  // const token = useContext(UserContext);
+  // console.log("Token called by <JobCard />", token)
 
   const { title, companyName, salary, equity } = jobData;
 
   return (
-    <div className="JobCard card">
+    <div className="JobCard card border-secondary mb-3">
       <div>
-        <h2>{title}</h2>
+        <h4>{title}</h4>
         <p>{companyName !== undefined ? companyName : null}</p>
         <p>Salary: {salary}</p>
         <p>Equity: {equity}</p>
         <br />
-        <button style={{backgroundColor: "red"}}>Apply</button>
+        <button className="btn btn-danger btn-small">Apply</button>
       </div>
     </div>
   )

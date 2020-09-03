@@ -5,6 +5,9 @@ import UserContext from '../userContext'
 import JoblyApi from "../api/api";
 
 /** Displays a navigation bar.
+ * 
+ * Props
+ * - handleLogout: function passed from App to log user out
  *
  * Design
  * - www.tinyurl.com/y3ree3wj
@@ -17,7 +20,7 @@ function Navigation({ handleLogout }) {
  //TODO implement logout 
  //TODO: implement users
   return (
-      <nav className="Navigation">
+    <nav className="Navigation navbar navbar-expand-lg bg-primary">
         <NavLink exact to="/"> Jobly </NavLink>
         <NavLink exact to="/companies"> Companies </NavLink>
         <NavLink exact to="/jobs"> Jobs </NavLink>
@@ -25,7 +28,7 @@ function Navigation({ handleLogout }) {
 
         <NavLink exact to="/login"> Login </NavLink>
         <NavLink exact to="/signup"> Signup </NavLink>
-        <NavLink exact to="/" onClick={handleLogout}> Logout </NavLink>
+        <NavLink exact to="/" onClick={handleLogout}> Logout FIXME</NavLink>
       </nav>
   )
 }

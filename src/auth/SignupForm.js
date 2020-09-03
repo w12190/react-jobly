@@ -2,6 +2,12 @@ import React, {useState} from 'react'
 import JoblyApi from '../api/api'
 
 /** Displays a sign-up form.
+ * 
+ *  * Props
+ * - handleSignup: function passed from App
+ *
+ * State
+ * - signupForm: holds data from signup form
  *
  * Design
  * - www.tinyurl.com/y3ree3wj
