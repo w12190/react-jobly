@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import './bootstrap.css'
+import '../bootstrap.css'
 
 /** Displays a simple search box.
  * State

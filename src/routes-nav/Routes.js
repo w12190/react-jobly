@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Homepage from './Homepage'
-import CompanyList from './CompanyList'
-import JobList from './JobList'
-import CompanyDetails from './CompanyDetails'
-import SignupForm from './SignupForm'
-import LoginForm from './LoginForm'
-import ProfileForm from './ProfileForm'
+import Homepage from '../homepage/Homepage'
+import CompanyList from '../companies/CompanyList'
+import JobList from '../jobs/JobList'
+import CompanyDetails from '../companies/CompanyDetails'
+import SignupForm from '../auth/SignupForm'
+import LoginForm from '../auth/LoginForm'
+import ProfileForm from '../profiles/ProfileForm'
 
 /** Maps URL's to components.
  * 

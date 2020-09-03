@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import SearchForm from './SearchForm';
+import SearchForm from '../common/SearchForm';
 import CompanyCard from './CompanyCard'
 import './CompanyList.css'
-import JobCardList from './JobCardList';
-import JoblyApi from './api.js'
+import JobCardList from '../common/JobCardList';
+import JoblyApi from '../api/api.js'
 
 
 

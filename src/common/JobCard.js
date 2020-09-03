@@ -1,6 +1,6 @@
 import React from 'react'
 import './JobCard.css'
-import './bootstrap.css';
+import '../bootstrap.css';
 
 /** Display simple info about a job
  * 

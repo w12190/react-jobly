@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import JobCardList from './JobCardList'
-import SearchForm from './SearchForm'
-import JoblyApi from './api'
+import JobCardList from '../common/JobCardList'
+import SearchForm from '../common/SearchForm'
+import JoblyApi from '../api/api'
 
 
 // TODO: codereview PAUSED; 
