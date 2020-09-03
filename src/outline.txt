@@ -16,7 +16,7 @@ SUBROUTINE
 x. Afterwards, handle case where they just enter ./companies/handle (and it isn't set yet)
 
 - implement JobList
-- implement CompanyDetails
+- implement CompanyDetails with an API call 
 - implement search box and add to JobList & CompanyList
 - Extra projects
   - combining useEffects() for different calls*/

@@ -41,8 +41,16 @@ class JoblyApi {
     return res.companies;
   }
 
-  /** Get all jobs by a given company by handle. */
-  static async getAllJobsForCompany(handle) {
+  /** Get details on companies that match filter. */
+
+  static async getFilteredCompanies(query) {
+      let res = await this.request(`companies?name=${query}`);
+    console.log("query", query, "company", res.companies)
+      return res.companies;
+  }
+
+  /** Get details for a given company by handle. */
+  static async getDetailsForCompany(handle) {
     let res = await this.request(`companies/${handle}`);
     return res.company;
   }
@@ -51,6 +59,12 @@ class JoblyApi {
   static async getAllJobs(){
     let res = await this.request(`jobs`)
     return res.jobs
+  }
+
+  /** Get all jobs with titles filtered by a given search string */
+  static async getFilteredJobs(title) {
+    let res = await this.request(`jobs?title=${title}`);
+    return res.jobs;
   }
 }
 

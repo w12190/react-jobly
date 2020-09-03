@@ -1,5 +1,6 @@
 import React from 'react'
 import './JobCard.css'
+import './bootstrap.css';
 
 /** Display simple info about a job
  * 
@@ -10,18 +11,18 @@ import './JobCard.css'
  * - www.tinyurl.com/y3ree3wj
  */
 
-function JobCard(props) {
-  const {  title, companyName, salary, equity } = props.jobData;
-
+function JobCard({jobData}) {
+  const { title, companyName, salary, equity } = jobData;
+  // const {  title, salary, equity } = props.jobData;
   return (
-    <div className="JobCard">
+    <div className="JobCard card">
       <div>
         <h2>{title}</h2>
         <p>{companyName !== undefined ? companyName : null}</p>
         <p>Salary: {salary}</p>
         <p>Equity: {equity}</p>
-
         <br />
+        <button style={{backgroundColor: "red"}}>Apply</button>
       </div>
     </div>
   )

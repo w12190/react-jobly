@@ -1,24 +1,58 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import JobCardList from './JobCardList'
 import { useParams } from 'react-router-dom'
+import JoblyApi from './api'
 
 /** Displays company details.
+ * 
+ * State
+ * jobListForCompany: holds list of jobs for company [{},{},...]
  *
  * Design
  * - www.tinyurl.com/y3ree3wj
  */
 
-function CompanyDetails({ companyToGetJobsFor, setCompanyToGetJobsFor, jobList }) {
+function CompanyDetails() {
+  console.log("<CompanyDetails />")
 
-  const { handle } = useParams()
+  const { name } = useParams()
+  console.log("name", name)
+  const [companyDetails, setCompanyDetails] = useState([]);
+  // console.log("companyDetails", companyDetails )
+  const [isLoaded, setIsLoaded ] = useState(false);
 
   //TODO: don't play state elevator
-  setCompanyToGetJobsFor(handle)
 
-  // const jobs
+  //  Fetches all jobs for companyToGetJobsFor
+  useEffect(
+    function handleApiRequests() {
+      async function fetchData() {
+        console.log("fetchData() for <CompanyDetail />")
+        try {
+          const company = await JoblyApi.getDetailsForCompany(name);
+          setIsLoaded(true);
+          setCompanyDetails(company);
+        } catch (err) {
+          alert(err);
+        }
+      }
+      if  (!isLoaded) {
+        fetchData()
+      }
+    }, [name, isLoaded]
+  )
+
+  // TODO: do not render jobCardList if data is not loaded
+  // Adding loading message
+
+  if (!isLoaded) {
+    return "Loading...";
+  } 
   return (
     <div className="CompanyDetails">
-      <JobCardList jobList={jobList} />
+      <h1>{companyDetails.name}</h1>
+      <p> {companyDetails.description}</p>
+      <JobCardList jobList={companyDetails.jobs} />
     </div>
   )
 }

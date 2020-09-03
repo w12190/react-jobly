@@ -9,7 +9,7 @@ import './Navigation.css'
  */
 
 function Navigation() {
-
+ //TODO: implement users
   return (
       <nav className="Navigation">
         <NavLink exact to="/"> Jobly </NavLink>
