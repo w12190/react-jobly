@@ -37,16 +37,17 @@ function App() {
           const userData = await JoblyApi.getUserData(username)
           console.log("userData", userData)
           //Set current user state
+          // CONCEPT: hydrating user from localstorage
           setCurrentUser(userData)
           setIsLoggedIn(true)
         }
       } catch (err) {
-        // do something with errors
+        // TODO: do something with errors
       }
     }
     console.log("token set by state", token)
     if (token !== undefined) setUser()
-  }, [token]
+  }, [token] // always runs the first time, even if dependency
   )
 
   /** Handles user login */
@@ -54,9 +55,7 @@ function App() {
     // API call
     const token = await JoblyApi.loginUser(data);
 
-    // // Set token
-    // setToken(JoblyApi.token);
-    // Set LocalStorage
+    // Set token in localStorage
 
     localStorage.setItem("token", token)
     setToken(localStorage.getItem("token"))
@@ -68,8 +67,7 @@ function App() {
     // API call
     const token = await JoblyApi.registerUser(data);
 
-    // // Set token
-    // setToken(JoblyApi.token);
+    // Set token
     localStorage.setItem("token", token)
     // TODO: make this a hook
     setToken(localStorage.getItem("token"))
@@ -85,23 +83,25 @@ function App() {
 
   /** Handles user logout */
   function handleLogout() {
-    // API call
-    // JoblyApi.logoutUser();//TODO: don't want api.js to do any of it, just set to null and let effect handle
 
     // Reset states
     setIsLoggedIn(false)
-    // setToken(JoblyApi.token);
+
     localStorage.removeItem("token")
   }
 
-  function handleJobApplication() {}
+  // function handleJobApplication() {
+  // }
 
 
 
-  //TODO: don't have to use derived state isLoggedIn, just use null for currUser
+  //TODO: stylistic choice to implement later: don't have to use derived state isLoggedIn, just use null for currUser
   return (
     <div className="App">
-      <UserContext.Provider value={{ currentUser, isLoggedIn }}>
+      <UserContext.Provider value={{ currentUser, isLoggedIn }}> 
+      {/* <UserContext.Provider value={{ currentUser, isLoggedIn: currentUser !== [] }}>  */}
+      {/* TODO: clean up, make sure currentuser null */}
+      {/* provider components not limited to exposing state, can expose any variable */}
         <BrowserRouter>
           <Navigation handleLogout={handleLogout} />
           <Routes handleLogin={handleLogin} handleSignup={handleSignup} handleProfileEdit={handleProfileEdit} />

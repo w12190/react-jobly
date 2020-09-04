@@ -102,7 +102,7 @@ class JoblyApi {
 
   /** Edit job application status */
   static async editJobApplication(username, data){
-    let res = await this.request(`users/${username}`, data, 'patch')
+    let res = await this.request(`users/${username}/jobs`, data, 'patch')
     return res.user
   }
 }

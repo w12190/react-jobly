@@ -38,7 +38,8 @@ function LoginForm({ handleLogin }) {
     evt.preventDefault();
 
     //Makes API call to login; got fn from App
-    handleLogin(loginForm);
+    await handleLogin(loginForm);
+    // TODO: can give an error if needed
 
     //Reset form
     setLoginForm(INITIAL_FORM_DATA);

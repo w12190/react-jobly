@@ -8,11 +8,11 @@ import UserContext from '../common/UserContext'
  * - www.tinyurl.com/y3ree3wj
  */
 
-function ProfileForm({handleProfileEdit}){
+function ProfileForm({ handleProfileEdit }) {
 
 
 
-   const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   const INITIAL_FORM_DATA = {
     password: currentUser.password,
@@ -22,31 +22,32 @@ function ProfileForm({handleProfileEdit}){
   }
   const [profileForm, setProfileForm] = useState(INITIAL_FORM_DATA);
 
-   const history = useHistory()
+  const history = useHistory()
 
 
-   function handleChange(evt) {
-     const { name, value } = evt.target;
-     setProfileForm(oldFormData => ({
-       ...oldFormData,
-       [name]: value
-     }))
-   }
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+    setProfileForm(oldFormData => ({
+      ...oldFormData,
+      [name]: value
+    }))
+  }
 
-   async function handleSubmit(evt) {
-     evt.preventDefault();
-     const dataToUpdate = {
-       password: profileForm.password,
-       firstName: profileForm.firstName,
-       lastName: profileForm.lastName,
-       email: profileForm.email
-      }
-     // send new profile data to App 
-     handleProfileEdit(currentUser.username, dataToUpdate)
-     //Add to history
-     history.push("/")
+  async function handleSubmit(evt) {
+    evt.preventDefault();
+    const dataToUpdate = {
+      password: profileForm.password,
+      firstName: profileForm.firstName,
+      lastName: profileForm.lastName,
+      email: profileForm.email
+    }
+    // send new profile data to App 
+    //TODO: handle error
+    await handleProfileEdit(currentUser.username, dataToUpdate)
+    //Add to history
+    history.push("/")
 
-   }
+  }
 
 
   return (
@@ -56,7 +57,6 @@ function ProfileForm({handleProfileEdit}){
         <br />
         {/* TODO: do no allow user to change username */}
         <p>{currentUser.username} </p>
-        {/* <input type="text" id="username" name="username" value={currentUser.username} onChange={handleChange} /> */}
         <br />
         <label htmlFor="password"> Password </label>
         <br />
@@ -78,6 +78,6 @@ function ProfileForm({handleProfileEdit}){
       </form>
     </div>
   )
- }
+}
 
- export default ProfileForm
+export default ProfileForm

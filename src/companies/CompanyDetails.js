@@ -40,7 +40,7 @@ function CompanyDetails() {
       if  (!isLoaded) {
         fetchData()
       }
-    }, [name, isLoaded]
+    }, [name, isLoaded] // always runs the first time, no matter dependencies
   )
 
   // TODO: do not render jobCardList if data is not loaded

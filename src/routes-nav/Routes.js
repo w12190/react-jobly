@@ -24,7 +24,7 @@ import UserContext from '../common/UserContext'
  * Design
  * - www.tinyurl.com/y3ree3wj
  */
-function Routes({ handleLogin, handleSignup, handleProfileEdit}) {
+function Routes({ handleLogin, handleSignup, handleProfileEdit }) {
 
   const { isLoggedIn } = useContext(UserContext);
 
@@ -40,35 +40,34 @@ function Routes({ handleLogin, handleSignup, handleProfileEdit}) {
 
         {isLoggedIn && (
           <>
-        <Route exact path="/companies/:name">
-          <CompanyDetails />
-        </Route>
+            <Route exact path="/companies/:name">
+              <CompanyDetails />
+            </Route>
 
-        <Route exact path="/companies">
-          <CompanyList />
-        </Route>
+            <Route exact path="/companies">
+              <CompanyList />
+            </Route>
 
-        <Route exact path="/jobs">
-          <JobList />
-        </Route>
+            <Route exact path="/jobs">
+              <JobList />
+            </Route>
 
-        <Route exact path="/profile">
-              <ProfileForm handleProfileEdit={handleProfileEdit}/>
-        </Route>
-
+            <Route exact path="/profile">
+              <ProfileForm handleProfileEdit={handleProfileEdit} />
+            </Route>
           </>
         )}
 
         {!isLoggedIn && (
           <>
 
-        <Route exact path="/login">
-          <LoginForm handleLogin={handleLogin}/>
-        </Route>
+            <Route exact path="/login">
+              <LoginForm handleLogin={handleLogin} />
+            </Route>
 
-        <Route exact path="/signup">
-          <SignupForm handleSignup={handleSignup}/>
-        </Route>
+            <Route exact path="/signup">
+              <SignupForm handleSignup={handleSignup} />
+            </Route>
           </>
         )}
 

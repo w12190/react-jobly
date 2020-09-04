@@ -22,6 +22,10 @@ x implement search box and add to JobList & CompanyList
   - combining useEffects() for different calls*/
   - combine companyList and companyToGetJobsFor states if no need after all routes implemented
 - Minor Q's: is it bad practice to pass around extra key/value pairs in data POJO's (change depending on answer)
+-- performance wise: passing a reference. Keep security concerns in mind but otherwise, this having variety of data allows for more flexibility from components that want to use this cdata 
+-- security concerns: guard at the perimeters (where data enters and exits from system)
+
+- TODO: States should live as low down as possible, while still being available to every component that needs it
 
 Hint on Proceeding — Read After Thinking!
 
