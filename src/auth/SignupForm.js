@@ -28,7 +28,6 @@ function SignupForm({ handleSignup }){
    // TODO: add data validation and alerts
 
 
-   //TODO: add history.push() and redirect
    const [signupForm, setSignupForm] = useState(INITIAL_FORM_DATA);
 
    function handleChange(evt) {

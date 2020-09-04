@@ -16,9 +16,9 @@ import { useHistory } from 'react-router-dom'
 
 function LoginForm({ handleLogin }) {
   const INITIAL_FORM_DATA = {
-    username: "",
-    password: ""
-  }
+    username: "testuser",
+    password: "password"
+  } // TODO: remove default data
 
   const history = useHistory()
 

@@ -24,14 +24,14 @@ import UserContext from '../common/UserContext'
  * Design
  * - www.tinyurl.com/y3ree3wj
  */
-function Routes({handleLogin, handleSignup}) {
+function Routes({ handleLogin, handleSignup, handleProfileEdit}) {
 
   const { isLoggedIn } = useContext(UserContext);
 
 
   //TODO: move CSS ( col-10 mx-auto text-center)
   return (
-    <div className="Routes" >
+    <div className="Routes col-10 mx-auto text-center" >
 
       <Switch>
         <Route exact path="/">
@@ -53,9 +53,9 @@ function Routes({handleLogin, handleSignup}) {
         </Route>
 
         <Route exact path="/profile">
-          <ProfileForm />
+              <ProfileForm handleProfileEdit={handleProfileEdit}/>
         </Route>
-        
+
           </>
         )}
 

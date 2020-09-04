@@ -26,22 +26,26 @@ function App() {
   useEffect(function setCurrentUserOnLogin() {
     async function setUser() {
       try {
+        console.log("useEffect running with token: ", token)
         if (token) {
           //Decode JWT to get username in token
           const username = JWT.decode(token).username
+          JoblyApi.token = token;
+          console.log("username", username)
 
           //Get user data via API call and username
           const userData = await JoblyApi.getUserData(username)
-
+          console.log("userData", userData)
           //Set current user state
           setCurrentUser(userData)
           setIsLoggedIn(true)
         }
-        if (token !== undefined) setUser()
       } catch (err) {
         // do something with errors
       }
     }
+    console.log("token set by state", token)
+    if (token !== undefined) setUser()
   }, [token]
   )
 
@@ -53,6 +57,7 @@ function App() {
     // // Set token
     // setToken(JoblyApi.token);
     // Set LocalStorage
+
     localStorage.setItem("token", token)
     setToken(localStorage.getItem("token"))
     setIsLoggedIn(true)
@@ -70,6 +75,13 @@ function App() {
     setToken(localStorage.getItem("token"))
     setIsLoggedIn(true)
   }
+  /** Handles profile edits */
+
+  async function handleProfileEdit(username, data) {
+    // API call
+    const user = await JoblyApi.editUserData(username, data);
+    setCurrentUser(user);
+  }
 
   /** Handles user logout */
   function handleLogout() {
@@ -81,13 +93,18 @@ function App() {
     // setToken(JoblyApi.token);
     localStorage.removeItem("token")
   }
+
+  function handleJobApplication() {}
+
+
+
   //TODO: don't have to use derived state isLoggedIn, just use null for currUser
   return (
     <div className="App">
       <UserContext.Provider value={{ currentUser, isLoggedIn }}>
         <BrowserRouter>
           <Navigation handleLogout={handleLogout} />
-          <Routes handleLogin={handleLogin} handleSignup={handleSignup} />
+          <Routes handleLogin={handleLogin} handleSignup={handleSignup} handleProfileEdit={handleProfileEdit} />
         </BrowserRouter>
       </UserContext.Provider>
     </div>
