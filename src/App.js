@@ -7,7 +7,6 @@ import JoblyApi from './api/api'
 import JWT from 'jsonwebtoken'
 
 /** App
- * 
  * States
  * - token: set after user login
  * - currentUser: set after token updates
